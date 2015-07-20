@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class CombinationSum {
 
-    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+public static List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
         int length = candidates.length;
         for (int i = 0; i < length; i++) {
@@ -27,13 +27,11 @@ public class CombinationSum {
                 }
             }
         }
-        if (candidates.length == 0) {
+
+        if (length == 0||target < candidates[0]) {
             return result;
         }
 
-        if (target < candidates[0]) {
-            return result;
-        }
         if (target == candidates[0]) {
             List<Integer> sub = new ArrayList<Integer>();
             sub.add(candidates[0]);
@@ -41,7 +39,7 @@ public class CombinationSum {
             return result;
         }
         int max;
-        for (int i = candidates.length - 1; i >= 0; i--) {
+        for (int i = length - 1; i >= 0; i--) {
             max = target / candidates[i];
             for (int j = max; j > 0; j--) {
                 int newtarget = target - candidates[i] * j;
