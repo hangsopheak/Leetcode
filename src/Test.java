@@ -15,6 +15,7 @@ public static int solution(int[] nums){
    for(int i:nums){
       tmp^=i;
    }
+   
    return tmp;
 }
 
