@@ -20,7 +20,8 @@ public static int solution(int[] nums){
 }
 
     public static void main(String[] args) {
-        int[] a={677,  677};
-        System.out.print(solution(a));
+        int a=5;
+        a>>>=45;
+        System.out.print(a);
     }
 }
