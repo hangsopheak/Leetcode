@@ -20,8 +20,7 @@ public static int solution(int[] nums){
 }
 
     public static void main(String[] args) {
-        int a=5;
-        a>>>=45;
-        System.out.print(a);
+        String a="adasa";
+        System.out.print(a.substring(1, 3));
     }
 }
