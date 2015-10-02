@@ -13,11 +13,9 @@ public class MissingNumber {
 
     public int missingNumber(int[] nums) {
         int length = nums.length;
-        int result = 0;
-        for (int i = 1; i <= length; i++) {
-            result = result ^ i;
-        }
+        int result = length;
         for (int i = 0; i < length; i++) {
+            result = result ^ i;
             result = result ^ nums[i];
         }
         return result;
