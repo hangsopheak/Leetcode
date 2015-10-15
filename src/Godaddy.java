@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @author SONGSONG
  */
-public class Test {
+public class Godaddy {
 
     public static int[] solution(int[] f, int[] m) {
         HashMap<Integer, Integer> female = new HashMap<>();
@@ -44,14 +44,5 @@ public class Test {
             result[count - i - 1] = tmp;
         }
         return result;
-    }
-
-    public static void main(String[] args) {
-        int[] f = {200, 300, 250, 400, 250};
-        int[] m = {200, 250, 350, 400};
-        int[] result = solution(f, m);
-        for (int i = 0; i < result.length; i++) {
-            System.out.println(result[i]);
-        }
     }
 }
