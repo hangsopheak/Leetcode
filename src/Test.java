@@ -23,7 +23,11 @@ public class Test {
 
     public static void main(String[] args) {
         Integer[] test = {1, 5, 2, 3, 4};
-        Arrays.sort(test, new ReverseComparator());
+        Arrays.sort(test, new Comparator<Integer>() {
+            public int compare(Integer a, Integer b) {
+                return b - a;
+            }
+        });
         for (int i = 0; i < 5; i++) {
             System.out.println(test[i]);
         }
