@@ -50,5 +50,6 @@ public class PriorityQ {
         for (int i = 0; i < as.length; i++) {
             System.out.println(as[i]);
         }
+        System.out.println(example.compareTo("wan song song"));
     }
 }
