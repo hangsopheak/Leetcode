@@ -21,15 +21,23 @@ class ReverseComparator implements Comparator<Integer> {
 
 public class Test {
 
-    public static void main(String[] args) {
-        Integer[] test = {1, 5, 2, 3, 4};
-        Arrays.sort(test, new Comparator<Integer>() {
-            public int compare(Integer a, Integer b) {
-                return b - a;
-            }
-        });
-        for (int i = 0; i < 5; i++) {
-            System.out.println(test[i]);
+    /**
+     *
+     * @param A
+     * @return
+     */
+    public static int singleNumber(int[] A) {
+        int ones = 0, twos = 0;
+        for (int i = 0; i < A.length; i++) {
+            ones = (ones ^ A[i]) & ~twos;
+            twos = (twos ^ A[i]) & ~ones;
+            System.out.println(ones + " " + twos);
         }
+        return ones;
+    }
+
+    public static void main(String[] args) {
+        int[] ab = {1, 2, 4, 3, 3};
+        System.out.println(ab[2] < 4);
     }
 }
