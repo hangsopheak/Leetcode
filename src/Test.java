@@ -37,7 +37,11 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        int[] ab = {1, 2, 4, 3, 3};
-        System.out.println(ab[2] < 4);
+        String[] a = {"eat", "eat", "tan", "ate", "nat", "bat"};
+        Arrays.sort(a);
+        char[] cs = a[1].toCharArray();
+        System.out.println(a[1]);
+        Arrays.sort(cs);
+        System.out.println(new String(cs));
     }
 }
