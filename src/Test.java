@@ -2,6 +2,7 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,11 +38,8 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        String[] a = {"eat", "eat", "tan", "ate", "nat", "bat"};
-        Arrays.sort(a);
-        char[] cs = a[1].toCharArray();
-        System.out.println(a[1]);
-        Arrays.sort(cs);
-        System.out.println(new String(cs));
+        String[] array = new String[2];
+        List<String> list2 = Arrays.asList(array);
+        list2.add("test");
     }
 }
