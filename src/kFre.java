@@ -37,6 +37,7 @@ public class kFre {
                 return e1.getValue().compareTo(e2.getValue());
             }
         });
+
         for (Entry<Integer, Integer> e : hash.entrySet()) {
             if (topK.size() < k) {
                 topK.add(e);
