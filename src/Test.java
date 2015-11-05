@@ -84,12 +84,50 @@ public class Test {
      *
      * @param args
      */
+    static int countDuplicates(int[] input) {
+        int result = 0;
+        for (int i = 0; i < input.length; i++) {
+            input[i] = Math.abs(input[i]);
+        }
+        for (int i : input) {
+            int j = Math.abs(i);
+            if (input[j - 1] < 0) {
+                result++;
+            } else {
+                input[j - 1] *= -1;
+            }
+        }
+        return result;
+    }
+
+    static String compress(char[] input) {
+        int end = 0;
+        int length = input.length;
+        int count = 1;
+        for (int i = 0; i < length - 1; i++) {
+            if (input[i] == input[i + 1]) {
+                count++;
+            } else {
+                if (count > 1) {
+                    input[end++] = (char) (count + '0');
+                    input[end++] = input[i];
+                } else {
+                    input[end++] = input[i];
+                }
+                count = 1;
+            }
+        }
+        if(count == 1){
+            input[end++] = input[length -1];
+        }else{
+            input[end++] = (char) (count + '0');
+            input[end++] = input[length -1];
+        }
+        return new String(Arrays.copyOfRange(input, 0, end));
+    }
+
     public static void main(String[] args) {
-        String input = "222222222222222222222222a**2222222222222dasda22222222222******!***!W!WQW!sadasdite7qw7egskjG";
-        String encode = Test.Encode(input);
-        String decode = Test.Decode(encode);
-        System.out.println(input + "->" + encode + "->" + decode);
-        System.out.println("success? " + input.equals(decode));
-        System.out.println("rate " + (double) encode.length() / decode.length());
+        char[] ary = {'B', 'B', 'B', 'B', 'c', 'c', 'c', 'D', 'D', 'D'};
+        System.out.println(compress(ary));
     }
 }
