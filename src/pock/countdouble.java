@@ -5,6 +5,8 @@
  */
 package pock;
 
+import java.util.*;
+
 /**
  *
  * @author SONGSONG
@@ -24,9 +26,28 @@ public class countdouble {
         return result;
     }
 
+    static int countDuplicateshash(int[] input) {
+        int result = 0;
+        HashMap<Integer, Integer> hash = new HashMap<>();
+        for (int i : input) {
+            if (hash.containsKey(i)) {
+                if (hash.get(i) == 1) {
+                    result++;
+                    hash.put(i, 2);
+                } else if (hash.get(i) == 2) {
+                    result--;
+                    hash.put(i, 3);
+                }
+            } else {
+                hash.put(i, 1);
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        int[] inputs = {1, 2, 2, 3, 4, 5, 5, 3, 1, 4};
-        int r = countDuplicates(inputs);
+        int[] inputs = {1, 2, 2, 3, 4, 5, 5, 3, 1, 4, 4, 4};
+        int r = countDuplicateshash(inputs);
         System.out.println(r);
     }
 }
