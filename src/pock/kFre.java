@@ -1,3 +1,5 @@
+package pock;
+
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -20,7 +22,7 @@ public class kFre {
      * @param k
      * @return
      */
-    public static int findKFre(int[] input, int k) {
+    public static List<Integer> findKFre(int[] input, int k) {
         HashMap<Integer, Integer> hash = new HashMap<>();
         for (int i : input) {
             if (hash.containsKey(i)) {
@@ -38,21 +40,40 @@ public class kFre {
             }
         });
 
+        PriorityQueue<Entry<Integer, Integer>> rest = new PriorityQueue<>(k, new Comparator<Entry<Integer, Integer>>() {
+
+            @Override
+            public int compare(Entry<Integer, Integer> e1, Entry<Integer, Integer> e2) {
+                return e2.getValue().compareTo(e1.getValue());
+            }
+        });
+
         for (Entry<Integer, Integer> e : hash.entrySet()) {
             if (topK.size() < k) {
                 topK.add(e);
             } else {
-                if (topK.peek().getValue().compareTo(e.getValue()) < 0) {
-                    topK.poll();
+                if (topK.peek().getValue().compareTo(e.getValue()) <= 0) {
+                    rest.add(topK.poll());
                     topK.add(e);
                 }
             }
         }
-        return topK.peek().getValue();
+
+        List<Integer> result = new ArrayList<>();
+        while (!rest.isEmpty() && Objects.equals(rest.peek().getValue(), topK.peek().getValue())) {
+            result.add(rest.poll().getKey());
+        }
+        while (!topK.isEmpty()) {
+            result.add(topK.poll().getKey());
+        }
+        return result;
     }
 
     public static void main(String[] arg) {
-        int[] input = {1, 1, 2, 3, 3, 3, 4, 4, 4, 4};
-        System.out.println(findKFre(input, 4));
+        int[] input = {1, 1, 2, 2, 3, 3, 4, 4, 4};
+        List<Integer> output = findKFre(input, 1);
+        for (int i : output) {
+            System.out.println(i);
+        }
     }
 }
