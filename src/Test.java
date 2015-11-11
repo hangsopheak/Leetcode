@@ -117,17 +117,29 @@ public class Test {
                 count = 1;
             }
         }
-        if(count == 1){
-            input[end++] = input[length -1];
-        }else{
+        if (count == 1) {
+            input[end++] = input[length - 1];
+        } else {
             input[end++] = (char) (count + '0');
-            input[end++] = input[length -1];
+            input[end++] = input[length - 1];
         }
         return new String(Arrays.copyOfRange(input, 0, end));
+    }
+
+    public static void swap(StringBuilder a, StringBuilder b) {
+        String s = a.toString();
+        a.delete(0, a.length());
+        a.append(b.toString());
+        b.delete(0, b.length());
+        b.append(s);
     }
 
     public static void main(String[] args) {
         char[] ary = {'B', 'B', 'B', 'B', 'c', 'c', 'c', 'D', 'D', 'D'};
         System.out.println(compress(ary));
+        StringBuilder a = new StringBuilder("ad");
+        StringBuilder b = new StringBuilder("bc");
+        swap(a, b);
+        System.out.println(a);
     }
 }
