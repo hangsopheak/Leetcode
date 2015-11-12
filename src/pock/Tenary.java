@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author SONGSONG
  */
-public class NewClass {
+public class Tenary {
 
     static TreeNode tenaryToTree(String s) {
         Map<Integer, TreeNode> map = new HashMap();

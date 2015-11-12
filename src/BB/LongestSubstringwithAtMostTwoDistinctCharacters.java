@@ -32,9 +32,7 @@ public class LongestSubstringwithAtMostTwoDistinctCharacters {
             if (endIdx == length - 1 && map.size() <= 2) {
                 endIdx = length;
             }
-            if (result < endIdx - startIdx) {
-                result = endIdx - startIdx;
-            }
+            result = Math.max(result, endIdx - startIdx);
             if (map.size() > 2) {
                 while (map.size() > 2) {
                     char newStart = input.charAt(startIdx);
@@ -52,7 +50,23 @@ public class LongestSubstringwithAtMostTwoDistinctCharacters {
         return result;
     }
 
+    public static int lengthOfLongestSubstringTwoDistinct(String s) {
+        int i = 0, j = -1, maxLen = 0;
+        for (int k = 1; k < s.length(); k++) {
+            if (s.charAt(k) == s.charAt(k - 1)) {
+                continue;
+            }
+            if (j >= 0 && s.charAt(j) != s.charAt(k)) {
+                maxLen = Math.max(k - i, maxLen);
+                i = j + 1;
+            }
+            j = k - 1;
+        }
+        return Math.max(s.length() - i, maxLen);
+    }
+
     public static void main(String[] a) {
-        System.out.println(longestSub("aaacbbbbcbc"));
+        System.out.println(longestSub("eebceceeceecce"));
+        System.out.println(lengthOfLongestSubstringTwoDistinct("eebceceeceecce"));
     }
 }
