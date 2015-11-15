@@ -1,8 +1,5 @@
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -141,5 +138,14 @@ public class Test {
         StringBuilder b = new StringBuilder("bc");
         swap(a, b);
         System.out.println(a);
+        TreeSet<Integer> test = new TreeSet<>();
+        test.add(90);
+        test.add(100);
+        test.add(90);
+        test.remove(90);
+        while(!test.isEmpty()) {
+            System.out.println(test.pollLast());
+        }
     }
+    
 }

@@ -5,7 +5,7 @@
  */
 package pock;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  *
@@ -29,6 +29,26 @@ public class ContainsDuplicateIII {
                 map.remove(remove);
             }
             map.put(tail, nums[i]);
+        }
+        return false;
+    }
+
+    public boolean containsNearbyAlmostDuplicate2(int[] nums, int k, int t) {
+        if (k < 1 || t < 0) {
+            return false;
+        }
+        int length = nums.length;
+        TreeSet<Integer> tree = new TreeSet<>();
+        for (int i = 0; i < length; i++) {
+            Integer floor = tree.floor(nums[i] + t);
+            Integer ceil = tree.ceiling(nums[i] - t);
+            if ((floor != null && floor >= nums[i]) || (ceil != null && ceil <= nums[i])) {
+                return true;
+            }
+            tree.add(nums[i]);
+            if (tree.size() >= k) {
+                tree.remove(nums[i - k]);
+            }
         }
         return false;
     }
