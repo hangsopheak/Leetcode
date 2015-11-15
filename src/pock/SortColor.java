@@ -13,9 +13,9 @@ public class SortColor {
 
     static class Color {
 
-        int color;
+        char color;
 
-        public Color(int color) {
+        public Color(char color) {
             this.color = color;
         }
     }
@@ -23,13 +23,13 @@ public class SortColor {
     public static void sortColors(Color A[]) {
         int second = A.length - 1, zero = 0;
         for (int i = 0; i <= second; i++) {
-            while (A[i].color == 2 && i < second) {
-                int tmp = A[i].color;
+            while (A[i].color == 'y' && i < second) {
+                char tmp = A[i].color;
                 A[i].color = A[second].color;
                 A[second--].color = tmp;
             }
-            while (A[i].color == 0 && i > zero) {
-                int tmp = A[i].color;
+            while (A[i].color == 'r' && i > zero) {
+                char tmp = A[i].color;
                 A[i].color = A[zero].color;
                 A[zero++].color = tmp;
             }
@@ -56,11 +56,11 @@ public class SortColor {
     public static void main(String[] a) {
         int[] input1 = {0,1,2,0,1};
         Color[] input = new Color[5];
-        input[0] = new Color(0);
-        input[1] = new Color(1);
-        input[2] = new Color(2);
-        input[3] = new Color(0);
-        input[4] = new Color(1);
+        input[0] = new Color('r');
+        input[1] = new Color('b');
+        input[2] = new Color('y');
+        input[3] = new Color('r');
+        input[4] = new Color('b');
         sortColors(input);
         sortColors1(input1);
         for (int i = 0; i < 5; i++) {

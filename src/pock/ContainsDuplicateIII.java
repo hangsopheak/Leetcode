@@ -42,11 +42,11 @@ public class ContainsDuplicateIII {
         for (int i = 0; i < length; i++) {
             Integer floor = tree.floor(nums[i] + t);
             Integer ceil = tree.ceiling(nums[i] - t);
-            if ((floor != null && floor >= nums[i]) || (ceil != null && ceil <= nums[i])) {
+            if ((floor != null && floor.compareTo(nums[i]) >= 0) || (ceil != null && ceil.compareTo(nums[i]) <= 0)) {
                 return true;
             }
             tree.add(nums[i]);
-            if (tree.size() >= k) {
+            if (i >= k) {
                 tree.remove(nums[i - k]);
             }
         }
