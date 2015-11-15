@@ -21,7 +21,8 @@ public class KthFrequence {
      * @param k
      * @return
      */
-    static int kthFrequence(int[] input, int k) {
+    // O(nlogk)
+    static List<Integer> kthFrequence(int[] input, int k) {
         Map<Integer, Integer> map = new HashMap();
         for (int i : input) {
             if (!map.containsKey(i)) {
@@ -31,30 +32,40 @@ public class KthFrequence {
             }
         }
 
-        PriorityQueue<Entry<Integer, Integer>> pq = new PriorityQueue(5, new Comparator<Entry<Integer, Integer>>() {
+        PriorityQueue<Entry<Integer, Integer>> maxHeap = new PriorityQueue(5, new Comparator<Entry<Integer, Integer>>() {
 
             @Override
-            public int compare(Entry<Integer, Integer> o1, Entry<Integer, Integer> o2) {
-                return o1.getValue().compareTo(o2.getValue());
+            public int compare(Entry<Integer, Integer> a, Entry<Integer, Integer> b) {
+                return a.getValue().compareTo(b.getValue());
             }
+        });
 
+        PriorityQueue<Entry<Integer, Integer>> minHeap = new PriorityQueue(5, new Comparator<Entry<Integer, Integer>>() {
+
+            @Override
+            public int compare(Entry<Integer, Integer> a, Entry<Integer, Integer> b) {
+                return b.getValue().compareTo(a.getValue());
+            }
         });
 
         for (Entry<Integer, Integer> e : map.entrySet()) {
-            if (pq.size() < k) {
-                pq.add(e);
+            if (maxHeap.size() < k) {
+                maxHeap.add(e);
             } else {
-                if (pq.peek().getValue() < e.getValue()) {
-                    pq.poll();
-                    pq.add(e);
+                if (maxHeap.peek().getValue() <= e.getValue()) {
+                    minHeap.add(maxHeap.poll());
+                    maxHeap.add(e);
                 }
             }
         }
-
-        if (pq.size() < k) {
-            return -1;
+        List<Integer> res = new ArrayList<>();
+        while (!minHeap.isEmpty() && minHeap.peek().getValue().compareTo(maxHeap.peek().getValue()) == 0) {
+            res.add(minHeap.poll().getKey());
         }
-        return pq.poll().getKey();
+        while (!maxHeap.isEmpty()) {
+            res.add(maxHeap.poll().getKey());
+        }
+        return res;
     }
 
     /**
@@ -63,7 +74,10 @@ public class KthFrequence {
      * @param args
      */
     public static void main(String[] args) {
-        int[] input = new int[]{1, 2, 2, 3, 4, 5, 6, 6, 6};
-        System.out.println(KthFrequence.kthFrequence(input, 2));
+        int[] input = new int[]{1, 1, 2, 2, 3, 3, 4, 5, 6, 6, 6};
+        List<Integer> result = kthFrequence(input, 3);
+        for (int i : result) {
+            System.out.println(i);
+        }
     }
 }

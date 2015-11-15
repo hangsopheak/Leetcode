@@ -12,7 +12,7 @@ import java.util.*;
  * @author SONGSONG
  */
 public class Tenary {
-
+    //O(n)
     static TreeNode tenaryToTree(String s) {
         Map<Integer, TreeNode> map = new HashMap();
         for (int i = 0; i < s.length(); i += 2) {
