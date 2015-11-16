@@ -5,101 +5,49 @@
  */
 package pock;
 
+import java.util.Stack;
+
 /**
  *
  * @author SONGSONG
  */
 public class BasicCalculator {
 
-    int index = 0;
-
     public int calculate(String s) {
         s = s.replaceAll("\\s", "");
-        int length = s.length();
-        if (length == 0) {
+        int len = s.length();
+        if (len == 0) {
             return 0;
         }
-        long current = 0;
-        current = nextNum(s);
-        if (index == length) {
-            return (int) current;
-        }
-        char cur = s.charAt(index++);
-        while (index < length) {
-            long next = nextNum(s);
-            if (index == length) {
-                if (cur == '*') {
-                    current *= next;
-                } else if (cur == '/') {
-                    current /= next;
-                } else if (cur == '+') {
-                    current += next;
-                } else if (cur == '-') {
-                    current -= next;
-                }
-                return (int) current;
+        Stack<Integer> stack = new Stack<>();
+        int num = 0;
+        char sign = '+';
+        for (int i = 0; i < len; i++) {
+            if (Character.isDigit(s.charAt(i))) {
+                num = num * 10 + s.charAt(i) - '0';
             }
-            char nex = s.charAt(index++);
-            if (nex == '+' || nex == '-') {
-                if (cur == '*') {
-                    current *= next;
-                } else if (cur == '/') {
-                    current /= next;
-                } else if (cur == '+') {
-                    current += next;
-                } else if (cur == '-') {
-                    current -= next;
+            if (!Character.isDigit(s.charAt(i)) || i == len - 1) {
+                if (sign == '-') {
+                    stack.push(-num);
                 }
-                cur = nex;
-            } else {
-                if (cur == '*') {
-                    next = current * next;
-                } else if (cur == '/') {
-                    next = current / next;
+                if (sign == '+') {
+                    stack.push(num);
                 }
-                while (nex == '*' || nex == '/') {
-                    long tmp = nextNum(s);
-                    if (nex == '*') {
-                        next *= tmp;
-                    } else {
-                        next /= tmp;
-                    }
-                    if (index == length) {
-                        if (cur == '+') {
-                            current += next;
-                            return (int) current;
-                        } else if (cur == '-') {
-                            current -= next;
-                            return (int) current;
-                        }
-                        return (int) next;
-                    }
-                    nex = s.charAt(index++);
+                if (sign == '*') {
+                    stack.push(stack.pop() * num);
                 }
-                if (cur == '+') {
-                    current += next;
-                } else if (cur == '-') {
-                    current -= next;
-                } else {
-                    current = next;
+                if (sign == '/') {
+                    stack.push(stack.pop() / num);
                 }
-                cur = nex;
+                sign = s.charAt(i);
+                num = 0;
             }
         }
-        return (int) current;
-    }
 
-    public long nextNum(String s) {
-        int length = s.length();
-        long current = 0;
-        char tmp = s.charAt(index);
-        while (tmp <= '9' && tmp >= '0') {
-            current = current * 10 + Integer.parseInt(s.charAt(index++) + "");
-            if (index == length) {
-                break;
-            }
-            tmp = s.charAt(index);
+        int result = 0;
+        for (int i : stack) {
+            result += i;
         }
-        return current;
+        return result;
     }
 }
