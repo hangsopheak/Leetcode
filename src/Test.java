@@ -143,9 +143,10 @@ public class Test {
         test.add(100);
         test.add(90);
         test.remove(90);
-        while(!test.isEmpty()) {
+        while (!test.isEmpty()) {
             System.out.println(test.pollLast());
         }
+        System.out.println(~(10 ^ Integer.MAX_VALUE) & 10 ^ (10 + Integer.MAX_VALUE));
     }
-    
+
 }

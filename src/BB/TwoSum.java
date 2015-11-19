@@ -31,10 +31,10 @@ public class TwoSum {
     }
 
     public static int twoSum1(int[] numbers, int target) {
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        HashSet<String> result = new HashSet<>();
+        Set<Integer> map = new HashSet<>();
+        Set<String> result = new HashSet<>();
         for (int i = 0; i < numbers.length; i++) {
-            if (map.containsKey(target - numbers[i])) {
+            if (map.contains(target - numbers[i])) {
                 String next = "";
                 if (numbers[i] > target - numbers[i]) {
                     next = numbers[i] + " " + (target - numbers[i]);
@@ -43,13 +43,15 @@ public class TwoSum {
                     }
                 }
             }
-            map.put(numbers[i], i + 1);
+            map.add(numbers[i]);
         }
         return result.size();
     }
 
     public static void main(String[] a) {
-        int[] input = {3,6,1,9,8,8};
-        System.out.println(twoSum1(input, 9));
+        int[] input = {1, 46, 46, 1};
+        long ab = input[0] + input[1];
+        input[0] = (int) ab;
+        System.out.println(twoSum1(input, 47));
     }
 }
