@@ -38,8 +38,17 @@ public class myHashTable<K, V> {
         }
         if (ary.get(key.hashCode() % size) == null) {
             ary.add(key.hashCode() % size, new LinkedList<Entry<K, V>>());
+        } else {
+            LinkedList<Entry<K, V>> res = ary.get(key.hashCode() % size);
+            Iterator<Entry<K, V>> iterator = res.iterator();
+            while (iterator.hasNext()) {
+                Entry<K, V> e = iterator.next();
+                if (e.key.equals(key)) {
+                    ary.get(key.hashCode() % size).remove(e);
+                }
+            }
+            ary.get(key.hashCode() % size).addFirst(new Entry<K, V>(key, value));
         }
-        ary.get(key.hashCode() % size).addFirst(new Entry<K, V>(key, value));
     }
 
     public V get(K key) {

@@ -14,6 +14,7 @@ import java.util.*;
 public class TwoSum {
 
     public int[] twoSum(int[] numbers, int target) {
+        //O(n)
         int[] result = new int[2];
         int min = 2 * numbers.length;
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
@@ -31,6 +32,7 @@ public class TwoSum {
     }
 
     public static int twoSum1(int[] numbers, int target) {
+        //O(n)
         Set<Integer> map = new HashSet<>();
         Set<String> result = new HashSet<>();
         for (int i = 0; i < numbers.length; i++) {

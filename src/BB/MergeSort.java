@@ -14,7 +14,7 @@ public class MergeSort {
     int[] array;
     int[] tmpArray;
     int length;
-
+    //nlogn
     public void sort(int[] input) {
         this.array = input;
         this.length = input.length;

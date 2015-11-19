@@ -12,6 +12,7 @@ package BB;
 public class MaximumSubarray {
 
     public int maxSubArray(int[] nums) {
+        //O(n)
         int tmp = nums[0];
         int result = nums[0];
         for (int i = 1; i < nums.length; i++) {

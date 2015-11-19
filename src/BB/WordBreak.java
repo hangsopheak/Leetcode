@@ -45,6 +45,7 @@ public class WordBreak {
     }
 
     public boolean wordBreak1(String s, Set<String> wordDict) {
+        // O(n^2)
         if (wordDict.contains(s)) {
             return true;
         }

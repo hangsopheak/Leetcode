@@ -12,6 +12,7 @@ import java.util.*;
  * @author SONGSONG
  */
 public class DistinctSubstring {
+    //O(n^2)
 
     public static int numSubstrings(String text) {
         int length = text.length();

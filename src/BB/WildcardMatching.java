@@ -12,6 +12,7 @@ package BB;
 public class WildcardMatching {
 
     public boolean isMatch(String s, String p) {
+        //O(nm)
         int m = s.length(), n = p.length();
         int count = 0;
         for (int i = 0; i < n; i++) {

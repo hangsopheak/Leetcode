@@ -14,6 +14,7 @@ import java.util.*;
 public class SecondMax {
 
     public static int secondMax(int[] a) {
+        //O(n)
         TreeSet<Integer> tree = new TreeSet<>();
         int length = a.length;
         if(length == 1) return a[0];
