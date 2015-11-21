@@ -42,4 +42,26 @@ public class WildcardMatching {
         }
         return match[m];
     }
+
+    public static void main(String args[]) throws Exception {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+        int numWindows = 2;
+        int a[] = {2, 5};
+        int ticketsToSell = 4;
+        int result = 0;
+        while (ticketsToSell > 0) {
+            int tmp = a[0];
+            int tmpIdx = 0;
+            for (int i = 1; i < a.length; i++) {
+                if (tmp < a[i]) {
+                    tmp = a[i];
+                    tmpIdx = i;
+                }
+            }
+            result += tmp;
+            a[tmpIdx]--;
+            ticketsToSell--;
+        }
+        System.out.print(result);
+    }
 }

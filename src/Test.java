@@ -131,6 +131,20 @@ public class Test {
         b.append(s);
     }
 
+    public static int[] solution(int a[], int target) {
+        int length = a.length;
+        int i = 0;
+        for (int tmp : a) {
+            if (tmp != target) {
+                a[i++] = tmp;
+            }
+        }
+        while (i < length) {
+            a[i++] = target;
+        }
+        return a;
+    }
+
     public static void main(String[] args) {
         char[] ary = {'B', 'B', 'B', 'B', 'c', 'c', 'c', 'D', 'D', 'D'};
         System.out.println(compress(ary));
@@ -147,6 +161,11 @@ public class Test {
             System.out.println(test.pollLast());
         }
         System.out.println(~(10 ^ Integer.MAX_VALUE) & 10 ^ (10 + Integer.MAX_VALUE));
+        int[] input ={1, -1, 5, 7, 100, 7};
+        int[] res = solution(input, 7);
+        for(int i = 0; i < res.length; i++){
+            System.out.println(res[i]);
+        }
     }
 
 }
