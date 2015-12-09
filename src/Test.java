@@ -165,7 +165,10 @@ public class Test {
         int[] res = solution(input, 7);
         for(int i = 0; i < res.length; i++){
             System.out.println(res[i]);
-        }
+        }      
+        int[] dp = new int[10];
+        int len = 9;
+            int i = Arrays.binarySearch(dp, 0, len, 5);
+            System.out.println(i);
     }
-
 }
