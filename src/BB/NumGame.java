@@ -36,6 +36,6 @@ public class NumGame {
     }
 
     public static void main(String[] args) {
-        numgame(20, 2);
+        numgame(12, 8);
     }
 }
