@@ -13,13 +13,13 @@ import java.util.*;
  */
 public class MyInventoryManagementSystem implements InventoryManagementSystem {
 
-    private final Hashtable<String, Product> products;
+    private final Map<String, Product> products;
 
-    public MyInventoryManagementSystem(Hashtable<String, Product> products) {
+    public MyInventoryManagementSystem(Map<String, Product> products) {
         this.products = products;
     }
 
-    public Hashtable<String, Product> getProducts() {
+    public Map<String, Product> getProducts() {
         return products;
     }
 
