@@ -1,41 +1,35 @@
 
 import java.util.Arrays;
+import java.util.*;
+import leetcode.TreeNode;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author SONGSONG
  */
 public class test2 {
 
-    public static int lengthOfLIS(int[] nums) {
-        int[] dp = new int[nums.length];
-        int len = 0;
-
-        for (int x : nums) {
-            int i = Arrays.binarySearch(dp, 0, len, x);
-            if (i < 0) {
-                i = -(i + 1);
-            }
-            dp[i] = x;
-            for(int j : dp){
-                System.out.print(j + " ");
-            }
-            System.out.println();
-            if (i == len) {
-                len++;
-            }
+    public static List<Integer> grayCode(int n) {
+        List<Integer> result = new LinkedList<>();
+        for (int i = 0; i < 1 << n; i++) {
+            result.add(i ^ i >> 1);
+            System.out.println(i ^ i >> 1);
         }
-        return len;
+        return result;
     }
+
     public static void main(String[] args) {
-        int[] nums = {8, 10, 12};
-        System.out.println(Arrays.binarySearch(nums,  9));
-        lengthOfLIS(nums);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(null);
+        queue.add(null);
+        System.out.println(queue.size());
+        StringBuilder result = new StringBuilder();
+        result.append("#");
+        System.out.println(result.toString());
     }
 }
