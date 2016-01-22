@@ -31,5 +31,9 @@ public class test2 {
         StringBuilder result = new StringBuilder();
         result.append("#");
         System.out.println(result.toString());
+        int[]  a = new int[10];
+        Arrays.fill(a, 100);
+        int index = Arrays.binarySearch(a, 1);
+        System.out.println(index);
     }
 }
